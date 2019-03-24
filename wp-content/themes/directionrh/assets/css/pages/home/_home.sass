@@ -1,0 +1,159 @@
+.home-mosaic
+	ul
+		align-items: stretch
+		@extend .flex
+		flex-flow: row wrap 
+		justify-content: space-between
+		margin: 0 -2.5px -10px
+		> li 
+			background-position: center center
+			background-size: cover 
+			background-repeat: no-repeat
+			flex: 0 0 auto
+			overflow: hidden
+			margin: 0 5px 10px
+			padding: 10px
+			height: 330px
+			width: calc(33.333% - 10px)
+			&.post_5c9624b3278a9 
+				h3
+					color: $gold
+			&:nth-last-child(2)
+				width: 45%
+			&:last-child
+				margin-right: 0
+				padding-right: 0 
+				flex: 1
+			&.full_width
+				align-items: center
+				display: flex 
+				flex-flow: column wrap 
+				margin-left: 0
+				margin-right: 0
+				justify-content: center
+				width: 100%
+				> div
+					> div
+						align-items: center
+						@extend .flex
+						flex-flow: column wrap 
+						justify-content: center 
+				a
+					@extend .btn
+					opacity: .85
+					padding-left: 50px 
+					padding-right: 50px 
+			+mq(940px, max)
+				width: calc(50% - 10px)
+				&:first-child 
+					margin-left: 0
+				&:nth-child(2)
+					margin-right: 0
+				&:nth-child(3)
+					margin-right: 0
+					margin-left: 0
+					width: 100%
+				&:nth-last-child(3)
+					margin-left: 0
+				&:nth-last-child(2)
+					margin-right: 0
+					width: calc(50% - 10px)
+				&:last-child
+					margin-left: 0
+					width: 100%		
+				+mq(814px, max)
+					&:nth-last-child(2),
+					&:nth-last-child(3)
+						margin-right: 0
+						margin-left: 0
+						width: 100%		
+					+mq(500px, max)	
+						&:nth-child(1),
+						&:nth-child(2)
+							margin-right: 0
+							margin-left: 0
+							width: 100%								
+			form 
+				margin: 10px -20px 0
+				.btn 
+					float: right
+					margin-right: 6px
+				> span 
+					display: block
+					&:not(:last-child)
+						margin-bottom: 6px
+				input,
+				textarea
+					border: 1px darken($whitesmoke, 2%) solid
+					background-color: $whitesmoke
+					display: block 
+					+rem('font-size', 12px)
+					padding: 10px 15px
+					width: 100%
+			> div
+				overflow: inherit
+				&:not(.has-icon)
+					+mq(1025px, min)
+						opacity: 0
+						top: -300px
+						+transition(500ms)	
+				&.has-icon
+					>div
+						align-items: center
+						@extend .flex
+						flex-flow: column wrap 
+						justify-content: center 		
+						h3 
+							margin-bottom: 10px	
+							text-align: center
+				height: 100%
+				width: 100%
+				> div 
+					overflow: inherit
+					padding: 20px
+					height: inherit
+					width: inherit
+					h3
+						+rem('font-size', 20px)
+						+mq(1024px, max)
+							+rem('font-size', 18px)	
+						text-transform: uppercase
+					p 
+						+rem(('font-size':12px, 'line-height':19px))
+						margin: 12px 0
+						& + a
+							border: 1px white solid
+							display: block 
+							float: right
+							+rem(('font-size':12px,'letter-spacing':1.6px))
+							padding: 3px 5px
+							text-transform: uppercase
+			&:nth-child(4)
+				width: 100%
+			&:hover > div
+				opacity: 1 
+				top: 0				
+.home
+	margin-top: 40px
+	h2 
+		color: $blue
+		font-weight: bold 
+		+rem(('font-size':36px,'letter-spacing':5px))
+		+mq(580px, max)
+			+rem(('font-size':24px,'letter-spacing':initial))
+		text-transform: uppercase
+		small 
+			color: black
+			display: block 
+			+rem('font-size', 24px)
+			+mq(580px, max)
+				font-size: 70%
+	p 
+		background-color: black 
+		color: white 
+		display: inline-block
+		font-weight: bold
+		+rem(('font-size':12px,'letter-spacing':1.6px))
+		margin: 18px 0 85px
+		padding: 3px 5px
+		text-transform: uppercase

@@ -1,0 +1,26 @@
+.clientes
+	ul 
+		align-items: center
+		@extend .flex 
+		flex-flow: row wrap
+		margin: -35px auto 35px
+		justify-content: space-between 
+		+mq(737px, max)
+			justify-content: center
+		&:hover li
+			filter: blur(3px)
+		> li 
+			&:hover
+				filter: initial
+			flex: 1 
+			+mq(737px, max)
+				flex: 0 0 auto 
+				width: 33.333%
+				+mq(414px, max)
+					width: 50%
+			img 
+				display: block 
+				margin: 0 auto 
+				height: 120px
+				max-width: 100%
+				width: auto
