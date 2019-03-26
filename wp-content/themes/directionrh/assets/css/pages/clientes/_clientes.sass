@@ -4,15 +4,14 @@
 		@extend .flex 
 		flex-flow: row wrap
 		margin: -35px auto 35px
-		justify-content: space-between 
-		+mq(737px, max)
-			justify-content: center
+		justify-content: center
 		&:hover li
 			filter: blur(3px)
 		> li 
+			margin: 0 10px 10px
 			&:hover
 				filter: initial
-			flex: 1 
+			flex: 0 0 auto
 			+mq(737px, max)
 				flex: 0 0 auto 
 				width: 33.333%

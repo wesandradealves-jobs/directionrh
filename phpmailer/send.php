@@ -29,30 +29,26 @@ require ( dirname(__FILE__).'/../wp-load.php' );
 require_once dirname(__FILE__)."/PHPMailerAutoload.php";
 
 
+foreach ($_POST as $key => $value) {
+	${$key} = $value;
+	$mensagem .= $key.': '.$value."<br>";
+}
 
-$nome = $_POST['nome'];
+$Nome = $_POST['Nome'];
 
-$empresa = $_POST['empresa'];
-
-$email = $_POST['email'];
-
-$telefone = ($_POST['telefone']) ? $_POST['telefone'] : '-';
-
-$mensagem = $_POST['mensagem'];
+$Email = $_POST['Email'];
 
 //
 
 $assunto = 'Contato - Site'. PHP_EOL . PHP_EOL;
-$message = '<br/>Empresa: '.$empresa. PHP_EOL . PHP_EOL;
-$message = '<br/>Telefone de contato: '.$telefone. PHP_EOL . PHP_EOL;
 
-$message .= '<br><hr>Mensagem:<br>'.$mensagem. PHP_EOL . PHP_EOL;
-
-
+$message .= $mensagem. PHP_EOL . PHP_EOL;
 
 $mail = new PHPMailer;
 
-$mail->setFrom($email, $nome);
+$mail->setFrom('test@system-dreams.com.br', 'System Dreams - Criação e Otimização de Sites');
+
+$mail->ReplyTo($Email, $Nome);
 
 // $mail->setFrom('noreply@original123.com.br', 'Original123');
 
@@ -63,11 +59,11 @@ $mail->addAddress('wesandradealves@gmail.com', 'Wesley Andrade');
 // );
 
 
-// foreach($recipients as $email => $name)
+// foreach($recipients as $Email => $name)
 
 // {
 
-//    $mail->AddBCC($email, $name);
+//    $mail->AddBCC($Email, $name);
 
 // }
 
@@ -142,7 +138,7 @@ if($mail->send()){
 
 // $mail->SMTPAuth = true;
 
-// //Username to use for SMTP authentication - use full email address for gmail
+// //Username to use for SMTP authentication - use full Email address for gmail
 
 // $mail->Username = 'wesandradealves@gmail.com';
 
@@ -152,11 +148,11 @@ if($mail->send()){
 
 // //Set who the message is to be sent from
 
-// $mail->setFrom($email, $nome);
+// $mail->setFrom($Email, $Nome);
 
 // //Set an alternative reply-to address
 
-// $mail->addReplyTo($email, $nome);
+// $mail->addReplyTo($Email, $Nome);
 
 // //Set who the message is to be sent to
 

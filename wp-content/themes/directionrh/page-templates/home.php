@@ -21,9 +21,8 @@
 					} else {
 						$url = $value['url'];
 					}					
-					echo '<li class="post_'.$value['id'].' '.( ($value['full_width'] ? 'full_width' : '') ).'" style="background-color:'.$value['background_color'].';background-image:url('.$value['imagem'].')">
+					echo '<li class="'.( ($value['icone'] ? 'has_icon' : '') ).' post_'.$value['id'].' '.( ($value['full_width'] ? 'full_width' : '') ).'" style="background-color:'.$value['background_color'].';background-image:url('.$value['imagem'].')">
 						'; 						
-						if(!$value['em_branco']) : 
 							echo '<div class="'.( ($value['icone'] ? 'has-icon' : '') ).'" style="background-color:'.( (!$value['full_width'] ? $value['background_color'] : '') ).'">
 								<div style="color:'.( ($value['background_color'] && $value['background_color'] != '#ffffff') ? 'white' : 'initial' ).'">
 									'.( ($value['titulo'] && $value['titulo'] != 'Serviços') ? '<h3>'.$value['titulo'].'</h3>' : '' ).'
@@ -45,7 +44,6 @@
 									'.( ($value['icone']) ? '<a href="'.$url.'"><img src="'.$value['icone'].'" alt="'.$value['titulo'].'" /></a>' : '' ).'
 								</div>
 							</div>';
-						endif;
 						echo '
 					</li>';
 				}

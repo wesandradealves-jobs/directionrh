@@ -16,7 +16,7 @@
                 }
             ?> 
             <?php if(!did_action('get_footer')) : ?>
-                <i class="fal fa-phone"></i>   
+                <i><img src="<?php echo get_template_directory_uri(); ?>/assets/imgs/phone.png" /></i>   
             <?php endif; ?>
         </p>
         <?php endif; ?>

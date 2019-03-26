@@ -15,6 +15,32 @@
 			padding: 10px
 			height: 330px
 			width: calc(33.333% - 10px)
+			+shadow(0px,11px,15px,-13px,black)
+			&:first-child
+				width: 65.8%
+				flex-flow: column wrap
+				justify-content: flex-end
+				align-items: flex-end
+				+mq(940px, max)
+					width: 100%
+					margin-right: 0
+				& + *
+					flex: 1
+					+mq(940px, max)
+						margin-right: 0
+						margin-left: 0
+				@extend .flex		
+				>div 
+					width: inherit
+					max-width: 380px
+					+mq(414px, max)
+						max-width: 100%
+					>div 
+						width: 100%						
+			&.has_icon
+				+transition(500ms)
+				&:hover
+					transform: scale(1.1)			
 			&.post_5c9624b3278a9 
 				h3
 					color: $gold
@@ -41,8 +67,8 @@
 				a
 					@extend .btn
 					opacity: .85
-					padding-left: 50px 
-					padding-right: 50px 
+					padding: 20px 50px
+					+rem('font-size', 19px)
 			+mq(940px, max)
 				width: calc(50% - 10px)
 				&:first-child 
@@ -92,11 +118,6 @@
 					width: 100%
 			> div
 				overflow: inherit
-				&:not(.has-icon)
-					+mq(1025px, min)
-						opacity: 0
-						top: -300px
-						+transition(500ms)	
 				&.has-icon
 					>div
 						align-items: center
@@ -130,9 +151,6 @@
 							text-transform: uppercase
 			&:nth-child(4)
 				width: 100%
-			&:hover > div
-				opacity: 1 
-				top: 0				
 .home
 	margin-top: 40px
 	h2 

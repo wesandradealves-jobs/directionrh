@@ -30,10 +30,33 @@
         $post_types = array(
             array(
                 'title' => 'Serviços',
-                'slug' => 'servicos'
+                'slug' => 'servicos',
+                'taxonomy' => true 
             )           
         );
         foreach ($post_types as $key => $value) {
+            if($value['taxonomy']){
+                register_taxonomy( $value['slug'].'_categories', array( $value['slug'] ), array(
+                    'hierarchical'      => true, // Set this to 'false' for non-hierarchical taxonomy (like tags)
+                    'labels'            => array(
+                        'name'              => _x( 'Categorias', 'taxonomy general name' ),
+                        'singular_name'     => _x( 'Categoria', 'taxonomy singular name' ),
+                        'search_items'      => __( 'Buscar Categorias' ),
+                        'all_items'         => __( 'Todas as Categorias' ),
+                        'parent_item'       => __( 'Categoria Pai' ),
+                        'parent_item_colon' => __( 'Categoria Pai:' ),
+                        'edit_item'         => __( 'Editar categoria' ),
+                        'update_item'       => __( 'Atualizar categoria' ),
+                        'add_new_item'      => __( 'Adicionar nova categoria' ),
+                        'new_item_name'     => __( 'Novo nome' ),
+                        'menu_name'         => __( 'Categorias' ),
+                    ),
+                    'show_ui'           => true,
+                    'show_admin_column' => true,
+                    'query_var'         => true,
+                    'rewrite'           => array( 'slug' => 'category' ),
+                ));                                     
+            }
             register_post_type($value['slug'], array(
                 'labels' => array(
                     'name' => _x($value['title'], 'post type general name'),
@@ -234,70 +257,363 @@
 
     if( function_exists('acf_add_local_field_group') ):
 
-    
+        acf_add_local_field_group(array(
+            'key' => 'group_5c9a1ec2c62c3',
+            'title' => 'Categorias',
+            'fields' => array(
+                array(
+                    'key' => 'field_5c9a1ec9a3825',
+                    'label' => 'Background',
+                    'name' => 'background',
+                    'type' => 'image',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'return_format' => 'url',
+                    'preview_size' => 'large',
+                    'library' => 'uploadedTo',
+                    'min_width' => '',
+                    'min_height' => '',
+                    'min_size' => '',
+                    'max_width' => '',
+                    'max_height' => '',
+                    'max_size' => '',
+                    'mime_types' => '',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'taxonomy',
+                        'operator' => '==',
+                        'value' => 'servicos_categories',
+                    ),
+                ),
+            ),
+            'menu_order' => 0,
+            'position' => 'normal',
+            'style' => 'default',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label',
+            'hide_on_screen' => '',
+            'active' => 1,
+            'description' => '',
+        ));
 
-    acf_add_local_field_group(array(
+        acf_add_local_field_group(array(
+            'key' => 'group_5c9543ad69e35',
+            'title' => 'Home',
+            'fields' => array(
+                array(
+                    'key' => 'field_5c9543de90076',
+                    'label' => 'Mosaico',
+                    'name' => 'mosaico',
+                    'type' => 'repeater',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'collapsed' => '',
+                    'min' => 0,
+                    'max' => 0,
+                    'layout' => 'block',
+                    'button_label' => 'Novo',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_5c962399b14bb',
+                            'label' => 'ID',
+                            'name' => 'id',
+                            'type' => 'unique_id',
+                            'instructions' => '',
+                            'required' => 0,
+                            'conditional_logic' => 0,
+                            'wrapper' => array(
+                                'width' => '',
+                                'class' => '',
+                                'id' => '',
+                            ),
+                        ),
+                        array(
+                            'key' => 'field_5c96244e54d98',
+                            'label' => 'Full Width',
+                            'name' => 'full_width',
+                            'type' => 'true_false',
+                            'instructions' => '',
+                            'required' => 0,
+                            'conditional_logic' => 0,
+                            'wrapper' => array(
+                                'width' => '',
+                                'class' => '',
+                                'id' => '',
+                            ),
+                            'message' => '',
+                            'default_value' => 0,
+                            'ui' => 1,
+                            'ui_on_text' => '',
+                            'ui_off_text' => '',
+                        ),
+                        array(
+                            'key' => 'field_5c95441490077',
+                            'label' => 'Titulo',
+                            'name' => 'titulo',
+                            'type' => 'text',
+                            'instructions' => '',
+                            'required' => 0,
+                            'conditional_logic' => array(
+                                array(
+                                    array(
+                                        'field' => 'field_5c954816dafbe',
+                                        'operator' => '!=',
+                                        'value' => '1',
+                                    ),
+                                ),
+                            ),
+                            'wrapper' => array(
+                                'width' => '',
+                                'class' => '',
+                                'id' => '',
+                            ),
+                            'default_value' => '',
+                            'placeholder' => '',
+                            'prepend' => '',
+                            'append' => '',
+                            'maxlength' => '',
+                        ),
+                        array(
+                            'key' => 'field_5c95441b90078',
+                            'label' => 'Texto',
+                            'name' => 'texto',
+                            'type' => 'wysiwyg',
+                            'instructions' => '',
+                            'required' => 0,
+                            'conditional_logic' => array(
+                                array(
+                                    array(
+                                        'field' => 'field_5c954816dafbe',
+                                        'operator' => '!=',
+                                        'value' => '1',
+                                    ),
+                                ),
+                            ),
+                            'wrapper' => array(
+                                'width' => '',
+                                'class' => '',
+                                'id' => '',
+                            ),
+                            'default_value' => '',
+                            'tabs' => 'all',
+                            'toolbar' => 'full',
+                            'media_upload' => 1,
+                            'delay' => 0,
+                        ),
+                        array(
+                            'key' => 'field_5c95442590079',
+                            'label' => 'Background',
+                            'name' => 'imagem',
+                            'type' => 'image',
+                            'instructions' => '',
+                            'required' => 0,
+                            'conditional_logic' => 0,
+                            'wrapper' => array(
+                                'width' => '',
+                                'class' => '',
+                                'id' => '',
+                            ),
+                            'return_format' => 'url',
+                            'preview_size' => 'thumbnail',
+                            'library' => 'all',
+                            'min_width' => '',
+                            'min_height' => '',
+                            'min_size' => '',
+                            'max_width' => '',
+                            'max_height' => '',
+                            'max_size' => '',
+                            'mime_types' => '',
+                        ),
+                        array(
+                            'key' => 'field_5c9544359007a',
+                            'label' => 'Background Color',
+                            'name' => 'background_color',
+                            'type' => 'color_picker',
+                            'instructions' => '',
+                            'required' => 0,
+                            'conditional_logic' => 0,
+                            'wrapper' => array(
+                                'width' => '',
+                                'class' => '',
+                                'id' => '',
+                            ),
+                            'default_value' => '',
+                        ),
+                        array(
+                            'key' => 'field_5c9544599007b',
+                            'label' => 'Icone',
+                            'name' => 'icone',
+                            'type' => 'image',
+                            'instructions' => '',
+                            'required' => 0,
+                            'conditional_logic' => array(
+                                array(
+                                    array(
+                                        'field' => 'field_5c954816dafbe',
+                                        'operator' => '!=',
+                                        'value' => '1',
+                                    ),
+                                ),
+                            ),
+                            'wrapper' => array(
+                                'width' => '',
+                                'class' => '',
+                                'id' => '',
+                            ),
+                            'return_format' => 'url',
+                            'preview_size' => 'thumbnail',
+                            'library' => 'all',
+                            'min_width' => '',
+                            'min_height' => '',
+                            'min_size' => '',
+                            'max_width' => '',
+                            'max_height' => '',
+                            'max_size' => '',
+                            'mime_types' => '',
+                        ),
+                        array(
+                            'key' => 'field_5c95477ffa98f',
+                            'label' => 'Url',
+                            'name' => 'url',
+                            'type' => 'post_object',
+                            'instructions' => '',
+                            'required' => 0,
+                            'conditional_logic' => array(
+                                array(
+                                    array(
+                                        'field' => 'field_5c954816dafbe',
+                                        'operator' => '!=',
+                                        'value' => '1',
+                                    ),
+                                ),
+                            ),
+                            'wrapper' => array(
+                                'width' => '',
+                                'class' => '',
+                                'id' => '',
+                            ),
+                            'post_type' => array(
+                                0 => 'servicos',
+                                1 => 'page',
+                            ),
+                            'taxonomy' => '',
+                            'allow_null' => 0,
+                            'multiple' => 0,
+                            'return_format' => 'object',
+                            'ui' => 1,
+                        ),
+                    ),
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-templates/home.php',
+                    ),
+                ),
+            ),
+            'menu_order' => 0,
+            'position' => 'acf_after_title',
+            'style' => 'seamless',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label',
+            'hide_on_screen' => array(
+                0 => 'the_content',
+                1 => 'excerpt',
+                2 => 'discussion',
+                3 => 'comments',
+                4 => 'revisions',
+                5 => 'slug',
+                6 => 'author',
+                7 => 'format',
+                8 => 'page_attributes',
+                9 => 'featured_image',
+                10 => 'categories',
+                11 => 'tags',
+                12 => 'send-trackbacks',
+            ),
+            'active' => 1,
+            'description' => '',
+        ));
 
-        'key' => 'group_5c8cea882a553',
+        acf_add_local_field_group(array(
 
-        'title' => 'Paginas',
+            'key' => 'group_5c8cea882a553',
 
-        'fields' => false,
+            'title' => 'Paginas',
 
-        'location' => array(
+            'fields' => false,
 
-            array(
+            'location' => array(
 
                 array(
 
-                    'param' => 'post_type',
+                    array(
 
-                    'operator' => '==',
+                        'param' => 'post_type',
 
-                    'value' => 'page',
+                        'operator' => '==',
+
+                        'value' => 'page',
+
+                    ),
 
                 ),
 
             ),
 
-        ),
+            'menu_order' => 0,
 
-        'menu_order' => 0,
+            'position' => 'side',
 
-        'position' => 'side',
+            'style' => 'seamless',
 
-        'style' => 'seamless',
+            'label_placement' => 'top',
 
-        'label_placement' => 'top',
+            'instruction_placement' => 'label',
 
-        'instruction_placement' => 'label',
+            'hide_on_screen' => array(
 
-        'hide_on_screen' => array(
+                0 => 'discussion',
 
-            0 => 'discussion',
+                1 => 'comments',
 
-            1 => 'comments',
+                2 => 'revisions',
 
-            2 => 'revisions',
+                3 => 'slug',
 
-            3 => 'slug',
+                4 => 'author',
 
-            4 => 'author',
+                5 => 'format',
 
-            5 => 'format',
+                6 => 'tags',
 
-            6 => 'tags',
+                7 => 'send-trackbacks',
 
-            7 => 'send-trackbacks',
+            ),
 
-        ),
+            'active' => 1,
 
-        'active' => 1,
+            'description' => '',
 
-        'description' => '',
-
-    ));
-    
+        ));
 
     endif;
 
@@ -501,20 +817,6 @@
 
             )); 
 
-            $wp_customize->add_setting( 'maps' );
-
-            $wp_customize->add_control('maps',  array(
-
-                'label' => 'Google Maps',
-
-                'section' => 'contato',
-
-                'type' => 'textarea',
-
-                'settings' => 'maps'
-
-            ));
-
             $wp_customize->add_setting( 'email' );
 
             $wp_customize->add_control('email',  array(
@@ -542,6 +844,7 @@
                 'settings' => 'telefone'
 
             ));
+
 
             $wp_customize->add_section( 'header' , array(
 

@@ -82,7 +82,9 @@
 					</div>
 				</section>
 				<?php
-			endif;					
+			endif;
+			wp_reset_postdata(); 
+			wp_reset_query(); 				
 		?>
 		<section class="contato" id="contato">
 			<div class="container">
@@ -90,7 +92,6 @@
 				<?php get_template_part('template-parts/form'); ?>
 			</div>
 		</section>
-		<div id="map"></div>
 	<?php endwhile;
 	endif; ?>
 <?php get_footer(); ?>

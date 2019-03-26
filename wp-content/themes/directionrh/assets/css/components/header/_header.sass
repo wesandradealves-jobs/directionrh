@@ -1,5 +1,6 @@
 .header
-	background-color: white 
+	background-color: white
+	border-bottom: 1px $lightgray solid
 	width: 100%
 	&.sticky
 		+mq(940px, max)
@@ -39,21 +40,11 @@
 					margin-bottom: 25px			
 					+mq(680px, max)
 						display: none
-				[class*="fa-"]
+				i
 					background-color: $blue
-					padding: 3px
-					&::after,
-					&::before
-						border: 2px white solid
-						+border(999px)
-						background-color: $blue
-						display: block
-						height: 27px
-						+rem(('font-size':14px, 'line-height':23px))
-						transform-origin: center center
-						transform: rotateY(180deg)
-						text-indent: 3px
-						width: 27px
+					padding: 4.5px 6px 
+					display: inline-block 
+					vertical-align: middle
 				color: white
 				span 
 					background-color: $blue
@@ -74,29 +65,12 @@
 					@extend .flex 
 					flex-flow: row wrap 
 					justify-content: flex-end
-					> li
-						+rem(('font-size':12px,'letter-spacing':1.6px))
+					>li
+						>ul 
+							top: 100%
+							left: 0					
 						+mq(940px, max)
 							display: none 
-						position: relative
-						text-transform: uppercase
-						&:hover > ul 
-							display: block
-						> ul 
-							background-color: $blue
-							display: none 
-							left: 0
-							position: absolute 
-							top: 100%
-							width: 213px
-							> li 
-								color: white
-								display: block
-								letter-spacing: initial
-								+rem('font-size', 10px) 
-								padding: 10px
-								&:hover
-									background-color: lighten($blue, 3%)
 						&:not(:last-child)
 							&:hover 
 								background-color: $blue 
@@ -108,5 +82,35 @@
 						&:last-child
 							display: none  
 							+mq(940px, max)
+								display: block												
+					li
+						+rem(('font-size':12px,'letter-spacing':1.6px))
+						position: relative
+						text-transform: uppercase
+						&:hover > ul 
+							display: block
+						ul 
+							background-color: $blue
+							display: none 
+							position: absolute 
+							width: 150px
+							li 
+								color: white
 								display: block
+								letter-spacing: initial
+								+rem('font-size', 12px) 
+								padding: 10px
+								>a
+									display: block 
+									width: 100%
+									overflow: hidden 
+									text-overflow: ellipsis
+									white-space: nowrap
+								&:hover 
+									background-color: lighten($blue, 3%) 
+									color: white
+								>ul 
+									top: 0 
+									left: 100%
+
 

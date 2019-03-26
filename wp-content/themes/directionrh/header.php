@@ -21,6 +21,7 @@
         wp_head();
         global $post;
         $current_user = wp_get_current_user();
+        $page = $post->post_name;
     ?>
   </head>
   <body

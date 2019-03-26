@@ -202,22 +202,55 @@ input
     background-size: cover
     .container
         @extend .flex 
-        flex-flow: column wrap 
-        justify-content: center
-        +mq(814px, max)
-            align-items: center
-        height: 300px 
+        flex-flow: row wrap
+        justify-content: space-between
+        align-items: center
+        height: 220px 
+        z-index: 2
         h2 
             text-shadow: 1px 1px 2px rgba(0,0,0,0.4)
             word-break: break-word
             color: #fff
             font-family: 'Montserrat',sans-serif
             +rem('font-size', 60px)
-            +mq(814px, max)
+            +mq(814px, max) 
                 +rem('font-size', 45px)
-            font-weight: 700
+                +mq(568px, max)
+                    +rem('font-size', 32px)
             letter-spacing: -2px
-            text-transform: uppercase   
+            z-index: 2
+            max-width: 50%
+            overflow: hidden 
+            text-overflow: ellipsis
+            display: block
+            white-space: nowrap
+            padding-right: 30px
+            flex: 0 0 auto
+            +mq(640px, max)
+                width: 100%
+                overflow: initial
+                text-overflow: initial 
+                max-width: initial 
+                text-align: center
+                white-space: initial
+                word-break: break-word
+                padding-right: 0
+        .breadcrumbs
+            +mq(640px, max)
+                display: none
+            >li
+                &:not(:last-child)
+                    &::after 
+                        content: '>'
+                        display: inline-block 
+                        vertical-align: middle 
+                        margin: 0 8px
+            align-items: center 
+            color: white
+            +rem('font-size', 14px)
+            @extend .flex
+            flex-flow: row wrap 
+            justify-content: space-between   
 
 .mobile-navigation
     .navigation 
@@ -239,3 +272,20 @@ input
                     color: lightblue
                 &:last-child
                     display: none
+
+.pagination
+    @extend .flex 
+    flex-flow: row wrap 
+    justify-content: flex-start
+    align-items: center
+    margin: 15px -5px 0
+    > * 
+        margin: 0 5px
+        background-color: $blue
+        color: white 
+        padding: 3px 6px
+        +rem('font-size', 14px)
+        &:hover,
+        &.current
+            background-color: $gold
+            font-weight: bold
