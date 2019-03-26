@@ -16,6 +16,37 @@
 			height: 330px
 			width: calc(33.333% - 10px)
 			+shadow(0px,11px,15px,-13px,black)
+			.fake-bottom 
+				position: absolute 
+				top: 0
+				left: 0
+				z-index: 2
+				max-width: 100%!important
+				width: 100%!important
+				height: 100%!important
+				& ~ * 
+					z-index: 3
+			&:nth-child(1),
+			&:nth-child(2)
+				overflow: initial
+				div 
+					overflow: hidden
+				&::after 
+					height: 30px
+					width: 50%
+					display: block 
+					content: ""
+					position: absolute
+					z-index: 1
+			&:nth-child(1)::after
+				top: -5px
+				left: -5px
+				background-color: $blue
+			&:nth-child(2)::after
+				bottom: -5px
+				right: -5px				
+				background-color: $gold
+				width: 100%
 			&:first-child
 				width: 65.8%
 				flex-flow: column wrap
@@ -26,8 +57,8 @@
 					margin-right: 0
 				& + *
 					flex: 1
+					margin-right: 0
 					+mq(940px, max)
-						margin-right: 0
 						margin-left: 0
 				@extend .flex		
 				>div 
@@ -48,16 +79,13 @@
 				width: 45%
 			&:last-child
 				margin-right: 0
-				padding-right: 0 
 				flex: 1
 			&.full_width
 				align-items: center
 				display: flex 
 				flex-flow: column wrap 
-				margin-left: 0
-				margin-right: 0
 				justify-content: center
-				width: 100%
+				width: calc(100% - 5px)
 				> div
 					> div
 						align-items: center
@@ -149,8 +177,6 @@
 							+rem(('font-size':12px,'letter-spacing':1.6px))
 							padding: 3px 5px
 							text-transform: uppercase
-			&:nth-child(4)
-				width: 100%
 .home
 	margin-top: 40px
 	h2 

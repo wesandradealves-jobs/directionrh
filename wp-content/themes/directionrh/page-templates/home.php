@@ -15,14 +15,19 @@
 	<div class="container">
 		<ul>
 			<?php 
+				$i = 0;
 				foreach (get_field('mosaico') as $key => $value) {
+					$i++;
 					if(is_object($value['url'])){
 						$url = $value['url']->guid;
 					} else {
 						$url = $value['url'];
 					}					
-					echo '<li class="'.( ($value['icone'] ? 'has_icon' : '') ).' post_'.$value['id'].' '.( ($value['full_width'] ? 'full_width' : '') ).'" style="background-color:'.$value['background_color'].';background-image:url('.$value['imagem'].')">
-						'; 						
+					echo '<li  class="'.( ($value['icone'] ? 'has_icon' : '') ).' post_'.$value['id'].' '.( ($value['full_width'] ? 'full_width' : '') ).'" style="background-color:'.$value['background_color'].';background-image:url('.$value['imagem'].');">
+						'; 	
+							if($i < 3){
+								echo '<div style="background-color:'.$value['background_color'].';background-image:url('.$value['imagem'].')" class="fake-bottom"></div>';
+							}					
 							echo '<div class="'.( ($value['icone'] ? 'has-icon' : '') ).'" style="background-color:'.( (!$value['full_width'] ? $value['background_color'] : '') ).'">
 								<div style="color:'.( ($value['background_color'] && $value['background_color'] != '#ffffff') ? 'white' : 'initial' ).'">
 									'.( ($value['titulo'] && $value['titulo'] != 'Serviços') ? '<h3>'.$value['titulo'].'</h3>' : '' ).'

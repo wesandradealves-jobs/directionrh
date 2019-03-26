@@ -66,6 +66,8 @@
 					flex-flow: row wrap 
 					justify-content: flex-end
 					>li
+						font-family: 'Source Sans Pro', sans-serif
+						font-weight: 600
 						>ul 
 							top: 100%
 							left: 0					
@@ -84,9 +86,10 @@
 							+mq(940px, max)
 								display: block												
 					li
-						+rem(('font-size':12px,'letter-spacing':1.6px))
+						+rem(('font-size':17px))
 						position: relative
 						text-transform: uppercase
+						color: #0d0d0d
 						&:hover > ul 
 							display: block
 						ul 
@@ -98,7 +101,7 @@
 								color: white
 								display: block
 								letter-spacing: initial
-								+rem('font-size', 12px) 
+								+rem('font-size', 14px) 
 								padding: 10px
 								>a
 									display: block 
