@@ -13,21 +13,6 @@
 						}
 						echo '"><a href="'.(($value->title == 'Contato') ? get_page_link(get_page_by_path('empresa')).'#contato' : $value->url).'" title="'.$value->title.'">'.$value->title.'</a>'; 
 							if($value->title == 'Serviços' && !did_action('get_footer')){
-							  //   $query_args = array(
-							  //       'post_type' => 'servicos',
-							  //   );
-							  //   $query = new WP_Query( $query_args );
-							  //   if($query){
-									// echo '<ul>';
-									// while ( $query->have_posts() ) : 
-									// 	$query->the_post();
-									// 	setup_postdata( $query );
-									//     echo '<li><a href="'.get_page_link(get_page_by_path('servicos')).'#'.$post->post_name.'" title="'.get_the_title().'">'.get_the_title().'</a></li>';
-									//     wp_reset_postdata();
-									// endwhile;
-									// echo '</ul>';
-							  //   }
-							  //   wp_reset_query();
 		                            $terms = get_terms( array( 
 		                                'taxonomy' => 'servicos_categories',
 		                                'hide_empty' => 0,
@@ -51,9 +36,33 @@
 		                                      echo '<ul>';
 		                                      foreach ($children as $child) {
 		                                        $url = get_term_link($child->term_id, 'servicos_categories');
-		                                        echo '<li><a href="';
-		                                        print_r($url);
-		                                        echo '" title="'.$child->name.'">'.$child->name.'</a></li>';
+		                                        echo '<li>
+			                                        <a href="';
+			                                        print_r($url);
+			                                        echo '" title="'.$child->name.'">'.$child->name.'</a>';
+
+
+					                                    $children = get_terms( array( 
+					                                        'taxonomy' => 'servicos_categories',
+					                                        'hide_empty' => 0,
+					                                        'parent'   => $child->term_id
+					                                    ) ); 
+					                                    if($children){
+					                                      echo '<ul>';
+					                                      foreach ($children as $child) {
+					                                        $url = get_term_link($child->term_id, 'servicos_categories');
+					                                        echo '<li>
+						                                        <a href="';
+						                                        print_r($url);
+						                                        echo '" title="'.$child->name.'">'.$child->name.'</a>';
+						                                        echo '
+					                                        </li>';
+					                                      }
+					                                      echo '</ul>';
+					                                    }
+			                                        
+			                                        echo '
+		                                        </li>';
 		                                      }
 		                                      echo '</ul>';
 		                                    }

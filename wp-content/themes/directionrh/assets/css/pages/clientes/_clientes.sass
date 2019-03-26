@@ -1,25 +1,36 @@
 .clientes
-	ul 
-		align-items: center
-		@extend .flex 
-		flex-flow: row wrap
-		margin: -35px auto 35px
-		justify-content: center
-		&:hover li
-			filter: blur(3px)
-		> li 
-			margin: 0 10px 10px
-			&:hover
-				filter: initial
-			flex: 0 0 auto
-			+mq(737px, max)
-				flex: 0 0 auto 
-				width: 33.333%
-				+mq(414px, max)
-					width: 50%
-			img 
-				display: block 
-				margin: 0 auto 
-				height: 120px
-				max-width: 100%
-				width: auto
+	.slick-prev
+		@extend .fal 
+		@extend .fa-angle-left
+		left: 0
+	.slick-next
+		@extend .fal 
+		@extend .fa-angle-right
+		right: 0
+	.slick-next,
+	.slick-prev
+		background-color: $blue 
+		color: white
+		+border(999px)
+		line-height: 50px
+		width: 50px
+		height: 50px
+		text-align: center
+		font-size: 0
+		cursor: pointer
+		position: absolute
+		top: calc(50% - 25px)		
+		+transition(300ms)
+		z-index: 3
+		&:hover
+			background-color: $gold
+			transform: scale(1.1)
+		&::after,
+		&::before
+			+rem('font-size', 20px)	
+	img 
+		display: block 
+		margin: 0 auto 
+		height: 120px
+		max-width: 100%
+		width: auto

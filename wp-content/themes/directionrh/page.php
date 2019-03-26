@@ -38,16 +38,16 @@
 					<section class="clientes">
 						<div class="container">
 							<h2>Alguns de nossos clientes</h2>
+							<ul class="carousel">
+								<?php 
+									foreach (get_field('clientes') as $key => $value) {
+										?>
+										<li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['titulo']; ?>"><img src="<?php echo $value['thumbnail']; ?>" alt="<?php echo $value['titulo']; ?>"></a></li>
+										<?php
+									}
+								?>
+							</ul>							
 						</div>
-						<ul>
-							<?php 
-								foreach (get_field('clientes') as $key => $value) {
-									?>
-									<li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['titulo']; ?>"><img src="<?php echo $value['thumbnail']; ?>" alt="<?php echo $value['titulo']; ?>"></a></li>
-									<?php
-								}
-							?>
-						</ul>	
 					</section>
 					<?php
 				}

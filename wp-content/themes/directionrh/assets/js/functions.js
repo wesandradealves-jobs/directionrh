@@ -48,7 +48,12 @@ $(document).ready(function () {
     $( ".toggle-social" ).click(function() {
         $(this).prev().toggleClass('toggle');
     	$(this).next().toggleClass('toggle');
-    }); 	
+    });
+    $('.carousel').slick({
+      infinite: true,
+      slidesToShow: 4,
+      slidesToScroll: 4
+    });       	
     $('.bxslider').bxSlider({
         pager: false,
         adaptiveHeight: true,
