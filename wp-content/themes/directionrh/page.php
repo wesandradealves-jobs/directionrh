@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 	<?php if ( have_posts () ) : while (have_posts()) : the_post(); ?>
 		<?php get_template_part('template-parts/banner'); ?>
-		<?php if(get_the_content()) : ?>
+		<?php if(get_the_content() && $post->post_name != 'servicos') : ?>
 			<section>
 				<div class="container">
 					<?php the_content(); ?>
@@ -16,18 +16,16 @@
 			    $query = new WP_Query( $query_args );
 			    if($query){
 					echo '<section>
-							<div class="container">
-								<ul class="servicos">';
+							<ul class="servicos">';
 					while ( $query->have_posts() ) : 
 						$query->the_post();
 					    echo '<li id="'.$post->post_name.'">';
 					    echo '
 							<div class="thumbnail" style="background-image: url('.wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'full').')"></div>
-							<p>'.get_the_content().'</p>
+							<p><a title="'.get_the_title().'" href="'.get_the_permalink().'">'.get_the_excerpt().'</a></p>
 					    </li>';
 					endwhile;
 					echo '</ul>
-						</div>
 							</section>';
 			    }
 			    wp_reset_query();

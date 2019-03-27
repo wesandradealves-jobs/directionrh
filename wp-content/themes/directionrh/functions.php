@@ -129,11 +129,11 @@
 
         wp_deregister_script('jquery');
 
-        wp_enqueue_script('vendors', get_template_directory_uri()."/assets/js/vendors.js",'','', false);
+        wp_enqueue_script('vendors', get_template_directory_uri()."/assets/js/vendors.js",'','10.0', false);
 
-        wp_enqueue_script('commons', get_template_directory_uri()."/assets/js/commons.js",'','', false);
+        wp_enqueue_script('commons', get_template_directory_uri()."/assets/js/commons.js",'','10.0', false);
 
-        wp_enqueue_style('style', get_stylesheet_directory_uri().'/style.css', array(), '', 'all');
+        wp_enqueue_style('style', get_stylesheet_directory_uri().'/style.css', array(), '10.0.13', 'all');
 
 	}
 
@@ -151,7 +151,7 @@
 
         remove_menu_page( 'jetpack' );                    //Jetpack*
 
-        // remove_menu_page( 'edit.php' );                   //Posts
+        remove_menu_page( 'edit.php' );                   //Posts
 
         // remove_menu_page( 'upload.php' );                 //Media
 
@@ -161,13 +161,13 @@
 
         //remove_menu_page( 'themes.php' );                 //Appearance
 
-        // remove_menu_page( 'plugins.php' );                //Plugins
+        remove_menu_page( 'plugins.php' );                //Plugins
 
         // remove_menu_page( 'users.php' );                  //Users
 
-        // remove_menu_page( 'tools.php' );                  //Tools
+        remove_menu_page( 'tools.php' );                  //Tools
 
-        // remove_menu_page( 'options-general.php' );        //Settings
+        remove_menu_page( 'options-general.php' );        //Settings
 
     }   
 
@@ -219,7 +219,7 @@
 
     
 
-    // add_filter('acf/settings/show_admin', '__return_false');
+    add_filter('acf/settings/show_admin', '__return_false');
 
     
 

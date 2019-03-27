@@ -38,8 +38,23 @@
         <a href="<?php echo site_url(); ?>">Home</a>
 
       </li>
-
       <?php 
+        if(is_archive() || is_category()){
+          echo '<li><a href="'.get_page_link(get_page_by_path('servicos')).'">Serviços</a></li>';
+          echo '<li>'.get_queried_object()->name.'</li>';
+        } elseif(!is_single()) {
+          echo '<li>'.get_the_title().'</li>';
+        } elseif(is_single()) {
+          echo '<li><a href="'.get_page_link(get_page_by_path(get_post_type_object(get_post_type())->name)).'">'.get_post_type_object(get_post_type())->label.'</a></li>';
+          foreach (wp_get_object_terms( get_the_id(), get_post_type().'_categories' ) as $cat) {
+            echo '<li><a href="'.get_term_link( $cat->term_id, get_post_type().'_categories' ).'" title="'.$cat->name.'">'.$cat->name.'</a></li>';
+          }          
+          echo '<li>'.get_the_title().'</li>';
+        }
+      ?>  
+
+
+<!--       <?php 
 
         if(is_archive() || is_category()){
 
@@ -49,7 +64,7 @@
 
           } else {
 
-            echo '<li><a href="'.site_url('produtos').'">Produtos</a></li>';
+            echo '<li><a href="'.site_url('servicos').'">Serviços</a></li>';
 
           }
 
@@ -84,7 +99,7 @@
 
         </a>
 
-      </li>
+      </li> -->
 
     </ul>
 

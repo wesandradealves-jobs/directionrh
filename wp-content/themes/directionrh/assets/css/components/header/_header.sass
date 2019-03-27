@@ -67,9 +67,22 @@
 					justify-content: flex-end
 					>li
 						font-family: 'Arial'
+						// &:hover > ul 
+						// 	display: block 
+						// primeiro nivel
 						>ul 
 							top: 100%
-							right: 0					
+							left: 0		
+							position: absolute	
+							>li
+								>a 
+									background-color: $blue
+								>ul>li
+									>a 
+										background-color: darken($blue, 5%)
+									>ul>li 
+										>a 
+											background-color: darken($blue, 10%) 
 						+mq(940px, max)
 							display: none 
 						&:not(:last-child)
@@ -94,23 +107,27 @@
 						&:hover > ul 
 							display: block
 						ul 
-							background-color: $blue
 							display: none 
 							position: absolute 
-							width: 160px
+							width: 250px
 							li 
-								color: white
 								display: block
 								letter-spacing: initial
 								+rem('font-size', 11px) 
-								padding: 10px
 								>a
-									display: block 
+									color: white
+									@extend .flex 
+									flex-flow: row wrap 
+									justify-content: space-between
+									align-items: center
 									width: 100%
 									overflow: hidden 
-								&:hover 
-									background-color: lighten($blue, 3%) 
-									color: white
+									padding: 10px
+									.fal 
+										+rem('font-size', 19px)
+										margin-left: 8px
+									&:hover 
+										background-color: lighten($blue, 3%) 
 								>ul 
 									top: 0 
 									right: 100%

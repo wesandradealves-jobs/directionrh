@@ -200,6 +200,15 @@ input
     background-position: bottom center 
     background-repeat: no-repeat
     background-size: cover
+    &::after 
+        content: ''
+        position: absolute 
+        top: 0 
+        left: 0
+        z-index: 1
+        background-color: rgba(0,0,0,.75)
+        height: 100%
+        width: 100%
     .container
         @extend .flex 
         flex-flow: row wrap
@@ -212,20 +221,16 @@ input
             word-break: break-word
             color: #fff
             font-family: 'Montserrat',sans-serif
-            +rem('font-size', 60px)
+            +rem('font-size', 35px)
             +mq(814px, max) 
-                +rem('font-size', 45px)
+                +rem('font-size', 30px)
                 +mq(568px, max)
-                    +rem('font-size', 32px)
+                    +rem('font-size', 24px)
             letter-spacing: -2px
             z-index: 2
-            max-width: 50%
-            overflow: hidden 
-            text-overflow: ellipsis
             display: block
-            white-space: nowrap
             padding-right: 30px
-            flex: 0 0 auto
+            flex: 1
             +mq(640px, max)
                 width: 100%
                 overflow: initial
@@ -239,18 +244,29 @@ input
             +mq(640px, max)
                 display: none
             >li
+                align-items: center
+                display: flex 
+                flex-flow: row wrap 
+                justify-content: space-between
+                >a 
+                    display: block 
+                    max-width: 140px
+                    flex: 1
+                    overflow: hidden
+                    text-overflow: ellipsis
+                    white-space: nowrap            
                 &:not(:last-child)
                     &::after 
                         content: '>'
-                        display: inline-block 
-                        vertical-align: middle 
+                        flex: 0 0 auto
                         margin: 0 8px
             align-items: center 
             color: white
-            +rem('font-size', 14px)
+            +rem('font-size', 12px)
             @extend .flex
             flex-flow: row wrap 
-            justify-content: space-between   
+            justify-content: space-between  
+            flex: 0 0 auto  
 
 .mobile-navigation
     .navigation 
@@ -289,3 +305,6 @@ input
         &.current
             background-color: $gold
             font-weight: bold
+p 
+    font-size: .875rem
+    line-height: 1.375rem 
