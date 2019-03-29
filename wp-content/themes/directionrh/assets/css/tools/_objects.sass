@@ -211,9 +211,9 @@ input
         width: 100%
     .container
         @extend .flex 
-        flex-flow: row wrap
-        justify-content: space-between
-        align-items: center
+        flex-flow: column wrap
+        justify-content: center
+        align-items: flex-start
         height: 220px 
         z-index: 2
         h2 
@@ -230,7 +230,6 @@ input
             z-index: 2
             display: block
             padding-right: 30px
-            flex: 1
             +mq(640px, max)
                 width: 100%
                 overflow: initial
@@ -251,7 +250,6 @@ input
                 >a 
                     display: block 
                     max-width: 140px
-                    flex: 1
                     overflow: hidden
                     text-overflow: ellipsis
                     white-space: nowrap            
@@ -266,7 +264,7 @@ input
             @extend .flex
             flex-flow: row wrap 
             justify-content: space-between  
-            flex: 0 0 auto  
+            margin-top: 15px
 
 .mobile-navigation
     .navigation 

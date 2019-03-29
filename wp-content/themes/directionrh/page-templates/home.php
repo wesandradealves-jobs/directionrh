@@ -22,7 +22,7 @@
 						$url = $value['url']->guid;
 					} else {
 						$url = $value['url'];
-					}					
+					}				
 					echo '<li  class="'.( ($value['icone'] ? 'has_icon' : '') ).' post_'.$value['id'].' '.( ($value['full_width'] ? 'full_width' : '') ).'" style="background-color:'.$value['background_color'].';background-image:url('.$value['imagem'].');">
 						'; 	
 							if($i < 3){

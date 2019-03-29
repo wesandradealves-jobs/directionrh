@@ -10,26 +10,46 @@
 		<?php endif; ?>
 		<?php 
 			if($post->post_name == 'servicos'){
-			    $query_args = array(
-			        'post_type' => $post->post_name,
-			    );
-			    $query = new WP_Query( $query_args );
-			    if($query){
-					echo '<section>
-							<ul class="servicos">';
-					while ( $query->have_posts() ) : 
-						$query->the_post();
-					    echo '<li id="'.$post->post_name.'">';
+                $children = get_terms( array( 
+                    'taxonomy' => $post->post_name.'_categories',
+                    'hide_empty' => 0,
+                    'parent' => 0
+                ) );
+                
+                if($children){
+                  echo '<ul class="servicos">';
+                  foreach ($children as $child) {
 					    echo '
-							<div class="thumbnail" style="background-image: url('.wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'full').')"></div>
-							<p><a title="'.get_the_title().'" href="'.get_the_permalink().'">'.get_the_excerpt().'</a></p>
-					    </li>';
-					endwhile;
-					echo '</ul>
-							</section>';
-			    }
-			    wp_reset_query();
-			    wp_reset_postdata();					
+    					    <li>
+    					        <div class="thumbnail" style="background-image: url('.get_field('background', $child).')"></div>
+    							<h3 class="title"><a title="'.$child->name.'" href="'.get_term_link($child->term_id, get_queried_object()->taxonomy).'">'.$child->name.'</a></h3>
+    							<p><a title="'.$child->name.'" href="'.get_term_link($child->term_id, get_queried_object()->taxonomy).'">'.$child->description.'</a></p>
+    					    </li>
+					    '; 
+                  }
+                  echo '</ul>';
+                }                 
+			 //   $query_args = array(
+			 //       'post_type' => $post->post_name,
+			 //   );
+			 //   $query = new WP_Query( $query_args );
+			 //   if($query){
+				// 	echo '<section>
+				// 			<ul class="servicos">';
+				// 	while ( $query->have_posts() ) : 
+				// 		$query->the_post();
+				// 	    echo '<li id="'.$post->post_name.'">';
+				// 	    echo '
+				// 			<div class="thumbnail" style="background-image: url('.wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'full').')"></div>
+				// 			<h3 class="title">'.get_the_title().'</h3>
+				// 			<p><a title="'.get_the_title().'" href="'.get_the_permalink().'">'.get_the_excerpt().'</a></p>
+				// 	    </li>';
+				// 	endwhile;
+				// 	echo '</ul>
+				// 			</section>';
+			 //   }
+			 //   wp_reset_query();
+			 //   wp_reset_postdata();					
 			} elseif($post->post_name == 'clientes'){
 				if(get_field('clientes')){
 					?>

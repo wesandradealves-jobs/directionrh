@@ -16,56 +16,149 @@
 		                            $terms = get_terms( array( 
 		                                'taxonomy' => 'servicos_categories',
 		                                'hide_empty' => 0,
+                                        
+                                        'orderby' => 'name',
+                                        'order' => 'ASC',
 		                                'parent'   => 0
 		                            ) ); 
 		                            if($terms){
 		                              echo '<ul>';
 		                                foreach ($terms as $term) {
 		                                  echo '<li>';
-		                                  $url_0 = get_term_link($term->term_id, 'servicos_categories');
-		                                  echo '<a href="'; 
-		                                  print_r($url_0);
-		                                  echo '" title="'.$term->name.'">'.$term->name.'</a>';
-
+		                                    echo '<a href="'.get_term_link($term->term_id, $term->taxonomy).'" title="'.$term->name.'">'.$term->name.'</a>';
+		                                    
+		                                  
 		                                    $children = get_terms( array( 
-		                                        'taxonomy' => 'servicos_categories',
+		                                        'taxonomy' => $term->taxonomy,
 		                                        'hide_empty' => 0,
+                                                
+                                                'orderby' => 'name',
+                                                'order' => 'ASC',
 		                                        'parent'   => $term->term_id
 		                                    ) ); 
-		                                    if($children){
-		                                      echo '<ul>';
-		                                      foreach ($children as $child) {
-		                                        $url = get_term_link($child->term_id, 'servicos_categories');
-		                                        echo '<li>
-			                                        <a href="';
-			                                        print_r($url);
-			                                        echo '" title="'.$child->name.'">'.$child->name.'</a>';
+		                                    
+                                            $p = new WP_Query( array(
+                                                'post_type' => str_replace('_categories','',$term->taxonomy),
+                                                'posts_per_page' => -1,
+                                                
+                                                'orderby' => 'name',
+                                                'order' => 'ASC',
+                                                'tax_query' => array(
+                                                    array(
+                                                        'taxonomy' => $term->taxonomy,
+                                                        'terms' => $term->slug,
+                                                        'field' => 'slug',
+                                                        'include_children' => true,
+                                                        'operator' => 'IN'
+                                                    )
+                                            ) ) );			  
+                                            
+                                            if($children){
+                                                echo '<ul>';
+                                                  foreach ($children as $child) {
+                                                    echo '<li>';
+                                                            echo '<a href="'.get_term_link($child->term_id, $term->taxonomy).'" title="'.$child->name.'">'.$child->name.'</a>';
+                		                                   
+                		                                    $childs = get_terms( array( 
+                		                                        'taxonomy' => $term->taxonomy,
+                		                                        'hide_empty' => 0,
+                                                                
+                                                                'orderby' => 'name',
+                                                                'order' => 'ASC',
+                		                                        'parent'   => $child->term_id
+                		                                    ) ); 
+                		                                    
+                                                            $p = new WP_Query( array(
+                                                                'post_type' => str_replace('_categories','',$term->taxonomy),
+                                                                'posts_per_page' => -1,
+                                                                
+                                                                'orderby' => 'name',
+                                                                'order' => 'ASC',
+                                                                'tax_query' => array(
+                                                                    array(
+                                                                        'taxonomy' => $term->taxonomy,
+                                                                        'terms' => $child->slug,
+                                                                        'field' => 'slug',
+                                                                        'include_children' => true,
+                                                                        'operator' => 'IN'
+                                                                    )
+                                                            ) ) );	
+                                                            
+                                                            if($childs){
+                                                                echo '<ul>';
+                                                                    foreach ($childs as $c) {
+                                                                        echo '<li>';
+                                                                            echo '<a href="'.get_term_link($c->term_id, $term->taxonomy).'" title="'.$c->name.'">'.$c->name.'</a>';
+                                		                                    
+                                		                                    $ch = get_terms( array( 
+                                		                                        'taxonomy' => $term->taxonomy,
+                                		                                        'hide_empty' => 0,
+                                                                                
+                                                                                'orderby' => 'name',
+                                                                                'order' => 'ASC',
+                                		                                        'parent'   => $c->term_id
+                                		                                    ) ); 
+                                		                                    
+                                                                            $p = new WP_Query( array(
+                                                                                'post_type' => str_replace('_categories','',$term->taxonomy),
 
+                                                                                'orderby' => 'name',
+                                                                                'order' => 'ASC',
+                                                                                'posts_per_page' => -1,
+                                                                                'tax_query' => array(
+                                                                                    array(
+                                                                                        'taxonomy' => $term->taxonomy,
+                                                                                        'terms' => $c->slug,
+                                                                                        'field' => 'slug',
+                                                                                        'include_children' => true,
+                                                                                        'operator' => 'IN'
+                                                                                    )
+                                                                            ) ) );	
+                                                                            
+                                                                            if($ch){
+                                                                                echo '<ul>';
+                                                                                foreach ($ch as $chd) {
+                                                                                    echo '<li>';
+                                                                                        echo '<a href="'.get_term_link($chd->term_id, $term->taxonomy).'" title="'.$chd->name.'">'.$chd->name.'</a>';
+                                                                                    echo '</li>';
+                                                                                }
+                                                                                echo '</ul>';
+                                                                            } elseif($p){
+                                                                                echo '<ul>';
+                                                                                while ( $p->have_posts() ) : $p->the_post();
+                                                                                    echo '<li><a href="'.get_the_permalink().'" title="'.get_the_title().'">'.get_the_title().'</a></li>';
+                                                                                endwhile;
+                                                                                wp_reset_query();
+                                                                                wp_reset_postdata();                                                  
+                                                                                echo '</ul>';   
+                                                                            }
+                                                                        
+                                                                        echo '</li>';
+                                                                    }       
+                                                                echo '</ul>';
+                                                            }elseif($p){
+                                                                echo '<ul>';
+                                                                while ( $p->have_posts() ) : $p->the_post();
+                                                                    echo '<li><a href="'.get_the_permalink().'" title="'.get_the_title().'">'.get_the_title().'</a></li>';
+                                                                endwhile;
+                                                                wp_reset_query();
+                                                                wp_reset_postdata();                                                  
+                                                                echo '</ul>';
+                                                            }
+                                                        echo '
+                                                    </li>';
+                                                  }
+                                                echo '</ul>';
+                                            } elseif($p){
+                                                echo '<ul>';
+                                                while ( $p->have_posts() ) : $p->the_post();
+                                                    echo '<li><a href="'.get_the_permalink().'" title="'.get_the_title().'">'.get_the_title().'</a></li>';
+                                                endwhile;
+                                                wp_reset_query();
+                                                wp_reset_postdata();                                                  
+                                                echo '</ul>';
+                                            }
 
-					                                    $children = get_terms( array( 
-					                                        'taxonomy' => 'servicos_categories',
-					                                        'hide_empty' => 0,
-					                                        'parent'   => $child->term_id
-					                                    ) ); 
-					                                    if($children){
-					                                      echo '<ul>';
-					                                      foreach ($children as $child) {
-					                                        $url = get_term_link($child->term_id, 'servicos_categories');
-					                                        echo '<li>
-						                                        <a href="';
-						                                        print_r($url);
-						                                        echo '" title="'.$child->name.'">'.$child->name.'</a>';
-						                                        echo '
-					                                        </li>';
-					                                      }
-					                                      echo '</ul>';
-					                                    }
-			                                        
-			                                        echo '
-		                                        </li>';
-		                                      }
-		                                      echo '</ul>';
-		                                    }
 
 		                                  echo '</li>';
 		                                }
