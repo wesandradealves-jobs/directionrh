@@ -1,0 +1,28 @@
+.pg-interna
+	.footer
+		margin-top: 0
+	.social
+		flex-flow: row-reverse wrap
+		left: initial 
+		right: 0
+		>p 
+			text-align: right
+		>[class*="fa-"]
+			transform: rotate(180deg)			    
+			transform-origin: center 
+	section 	
+		&:not(.banner)
+			.container
+				>h2
+				    font-family: 'Montserrat', sans-serif
+				    flex: 0 0 auto 
+				    +rem('font-size', 24px)
+				    margin-bottom: 35px
+				    text-transform: uppercase
+				    text-align: center
+				    width: 100%	
+				padding-top: 65px
+				padding-bottom: 65px
+
+		&.banner ~ :nth-child(even):not(.color_box)
+			background-color: whitesmoke

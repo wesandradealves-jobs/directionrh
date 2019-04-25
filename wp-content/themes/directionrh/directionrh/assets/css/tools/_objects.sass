@@ -1,0 +1,291 @@
+textarea,
+input
+    &[placeholder]
+        color: lightgray
+        font-weight: 300
+        opacity: 1
+        text-overflow: ellipsis
+    &::-moz-placeholder
+        color: lightgray
+        font-weight: 300
+        opacity: 1
+        text-overflow: ellipsis
+    &::-webkit-input-placeholder
+        color: lightgray
+        font-weight: 300
+        opacity: 1
+        text-overflow: ellipsis
+    &:-ms-input-placeholder 
+        color: lightgray
+        font-weight: 300
+        opacity: 1
+        text-overflow: ellipsis
+
+.flex  
+    display: -webkit-box
+    display: -ms-flexbox
+    display: -webkit-flex
+    display: flex    
+
+.container
+    display: block
+    max-width: 1180px
+    margin: 0 auto
+    padding-left: 15px
+    padding-right: 15px
+
+#wrap
+    min-height: 100vh
+    overflow: hidden
+
+.logo 
+    img,svg
+        display: block
+        height: auto
+        max-width: 100%
+
+.btn 
+    display: inline-block 
+    +rem('font-size', 13px)
+    padding: 10px 20px
+    text-transform: uppercase
+    &.btn-1
+        background-color: $gold
+        color: white
+
+.social 
+    align-items: center 
+    @extend .flex 
+    flex-flow: row wrap
+    +mq(414px, max)
+        flex-flow: column wrap
+    left: 0
+    position: fixed
+    top: 47vh
+    +mq(414px, max)
+        top: 100px
+    z-index: 51
+    >p 
+        +rem(('font-size':12px,'letter-spacing':1.6px))
+        display: none
+        +mq(414px, max)
+            display: none !important
+        padding: 4px
+        flex: 0 0 auto
+        text-transform: uppercase 
+        width: 100%
+        &.toggle 
+            display: block
+    [class*="fa-"]
+        background-color: $blue 
+        color: white
+        display: block
+        +rem(('line-height':40px,'font-size':18px)) 
+        height: 40px
+        text-align: center
+        width: 40px            
+    >[class*="fa-"]
+        background-color: darken($blue, 10%)
+        +mq(414px, max)
+            transform: rotate(90deg)
+            transform-origin: center center
+        &:hover
+            background-color: $blue
+    >ul 
+        align-items: inherit 
+        display: none 
+        &.toggle
+            display: inherit
+        flex-flow: inherit 
+        [class*="fa-"]
+            border: 1px $blue solid 
+            background-color: white 
+            color: $blue 
+            &:hover 
+                background-color: $blue 
+                color: white    
+                
+.color_box
+    background-color: $blue
+    color: white
+    display: block 
+    font-family: 'Montserrat', sans-serif
+    font-weight: 300
+    +rem('font-size', 24px)
+    text-align: center 
+    .container 
+        padding-top: 35px
+        padding-bottom: 35px
+
+.column_box
+    .container
+        align-items: stretch
+        @extend .flex 
+        flex-flow: row wrap 
+        justify-content: space-between
+        > * 
+            flex: 1
+            padding: 0 7.5px
+            text-align: center
+            +mq(737px, max)
+                flex: 0 0 auto
+                padding: 0 
+                &:not(:last-child)
+                    padding-bottom: 15px 
+                width: 100%
+            img 
+                max-height: 120px
+            i 
+                color: $blue
+                +rem('font-size', 120px)
+            h3 
+                +rem('font-size', 24px)
+                margin: 15px auto 10px
+                font-weight: 300
+            p 
+                +rem('font-size', 16px)
+
+.bx-wrapper
+    padding: 0 65px
+    .bx-controls
+        position: absolute
+        display: block 
+        top: 0%
+        height: 0
+        left: 0
+        z-index: 3
+        width: 100%
+    .bx-controls-direction
+        align-items: center
+        height: 0 
+        width: inherit
+        @extend .flex
+        flex-flow: row wrap 
+        justify-content: space-between
+
+.testimonials
+    blockquote 
+        p 
+            display: block 
+            text-align: center
+            &:not(:last-of-type)
+                font-style: italic
+                +rem('font-size', 22px)
+                +mq(737px, max)
+                    +rem('font-size', 16px)
+            &:last-of-type
+                display: block
+                +rem('font-size', 14px)
+                +mq(737px, max)
+                    +rem('font-size', 12px)
+                font-style: italic
+                margin-top: 15px
+
+#map 
+    display: block 
+    height: 500px
+    overflow: hidden
+    position: relative 
+    width: 100%
+    iframe 
+        position: absolute 
+        top: 0
+        left: 0
+        height: 100%
+        width: 100%
+
+.banner
+    align-items: flex-start
+    background-attachment: fixed 
+    background-position: bottom center 
+    background-repeat: no-repeat
+    background-size: cover
+    .container
+        @extend .flex 
+        flex-flow: row wrap
+        justify-content: space-between
+        align-items: center
+        height: 220px 
+        z-index: 2
+        h2 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.4)
+            word-break: break-word
+            color: #fff
+            font-family: 'Montserrat',sans-serif
+            +rem('font-size', 60px)
+            +mq(814px, max) 
+                +rem('font-size', 45px)
+                +mq(568px, max)
+                    +rem('font-size', 32px)
+            letter-spacing: -2px
+            z-index: 2
+            max-width: 50%
+            overflow: hidden 
+            text-overflow: ellipsis
+            display: block
+            white-space: nowrap
+            padding-right: 30px
+            flex: 0 0 auto
+            +mq(640px, max)
+                width: 100%
+                overflow: initial
+                text-overflow: initial 
+                max-width: initial 
+                text-align: center
+                white-space: initial
+                word-break: break-word
+                padding-right: 0
+        .breadcrumbs
+            +mq(640px, max)
+                display: none
+            >li
+                &:not(:last-child)
+                    &::after 
+                        content: '>'
+                        display: inline-block 
+                        vertical-align: middle 
+                        margin: 0 8px
+            align-items: center 
+            color: white
+            +rem('font-size', 14px)
+            @extend .flex
+            flex-flow: row wrap 
+            justify-content: space-between   
+
+.mobile-navigation
+    .navigation 
+        overflow: hidden 
+        max-height: 0
+        transition: max-height 500ms linear
+        &.toggle
+            max-height: 600px
+        >ul 
+            >li
+                border-bottom: 1px whitesmoke solid
+                color: $blue
+                display: block 
+                +rem('font-size', 16px)
+                padding: 12px 15px
+                >ul 
+                    display: none
+                &:hover
+                    color: lightblue
+                &:last-child
+                    display: none
+
+.pagination
+    @extend .flex 
+    flex-flow: row wrap 
+    justify-content: flex-start
+    align-items: center
+    margin: 15px -5px 0
+    > * 
+        margin: 0 5px
+        background-color: $blue
+        color: white 
+        padding: 3px 6px
+        +rem('font-size', 14px)
+        &:hover,
+        &.current
+            background-color: $gold
+            font-weight: bold
